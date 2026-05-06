@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anabell - Moda Infantil e Feminina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Baloo+2:wght@800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Nunito', sans-serif; background: #ffffff; overflow-x: hidden; color: #4a3728; }
+
+    /* --- MENU DE NAVEGAÇÃO (HEADER) COM VERDE CLARO DA LOGO --- */
+    .header-main {
+      background: #c5e3cd; /* O verde claro exato da logo */
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 48px; 
+      width: auto;
+      display: block;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #1e6b1e; /* Verde escuro da logo para contraste */
+      font-weight: 800;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link:hover {
+      color: #ffffff; /* Fica branco ao passar o mouse para destacar no verde */
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .nav-icons a {
+      color: #1e6b1e;
+      transition: transform 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icons a:hover {
+      transform: scale(1.1);
+      color: #ffffff;
+    }
+
+    /* --- HERO SECTION ORIGINAL --- */
+    .gradiente-com-nuvens {
+      background: linear-gradient(180deg, #1e6b1e 0%, #a8d5a2 100%);
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .icon-bg {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.25;
+    }
+    
+    .icon-rn { width: 75px; top: 10%; left: 8%; transform: rotate(-10deg); }
+    .icon-pijama { width: 85px; top: 15%; right: 10%; transform: rotate(15deg); }
+    .icon-provador { width: 70px; top: 45%; left: 5%; transform: rotate(-5deg); }
+    .icon-feminino { width: 80px; top: 8%; left: 45%; transform: rotate(10deg); }
+    .icon-batizado { width: 90px; top: 38%; right: 5%; transform: rotate(-12deg); }
+    .icon-gestante { width: 75px; top: 52%; left: 30%; transform: rotate(5deg); }
+    .icon-infantil { width: 80px; top: 48%; right: 25%; transform: rotate(-8deg); }
+
+    .hero-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 50px 20px 40px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .pct { font-family: 'Baloo 2', cursive; font-size: 110px; font-weight: 800; line-height: 1; text-shadow: 0 4px 20px rgba(0,0,0,.15); color: #fff; }
+    .flat { font-size: 36px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; margin-top: -8px; color: #fff; }
+    .btn { display: inline-block; margin-top: 18px; padding: 11px 34px; background: #e8334a; color: #fff; font-family: 'Nunito', sans-serif; font-size: .9rem; font-weight: 800; border-radius: 40px; text-decoration: none; box-shadow: 0 6px 18px rgba(232,51,74,.4); transition: transform .2s; }
+    .btn:hover { transform: scale(1.05); }
+
+    .cloud-side { position: absolute; z-index: 3; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.05)); opacity: 0.9; }
+    .cloud-l { left: -30px; top: 20%; }
+    .cloud-r { right: -30px; top: 30%; }
+    .cloud-shape { position: relative; width: 150px; height: 50px; background: #fff; border-radius: 50px; }
+    .cloud-shape::after, .cloud-shape::before { content: ''; position: absolute; background: #fff; border-radius: 50%; }
+    .cloud-shape::after { width: 70px; height: 70px; top: -35px; left: 25px; }
+    .cloud-shape::before { width: 50px; height: 50px; top: -20px; left: 75px; }
+
+    .clouds-bottom {
+      position: relative;
+      width: 100%;
+      line-height: 0;
+      margin-top: auto;
+    }
+
+    .cloud-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* BARRA DE CONFIANÇA */
+    .trust-bar { 
+      background: #fdfdfd; 
+      padding: 40px 20px;   
+      border-top: 1px solid #eeeeee; 
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .trust-container { 
+      max-width: 1300px; 
+      margin: 0 auto; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      flex-wrap: wrap; 
+      gap: 30px; 
+    }
+
+    .trust-item { 
+      display: flex; 
+      align-items: center; 
+      gap: 15px;      
+      font-size: 18px; 
+      font-weight: 800; 
+      color: #333; 
+      flex: 1;         
+      min-width: 250px; 
+      justify-content: center;
+    }
+
+    .trust-item svg { width: 32px; height: 32px; stroke-width: 2.5px; color: #1e6b1e; }
+    .trust-item.stars { color: #f5a623; letter-spacing: 2px; }
+
+    /* CONTEÚDO BRANCO / GRID */
+    .white-content { background: white; padding: 50px 20px 60px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-title { text-align: center; font-size: 36px; margin-bottom: 40px; font-weight: 800; color: #1e6b1e; }
+    .collection-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+    .card { position: relative; border-radius: 30px; overflow: hidden; height: 350px; background: #f9f6f2; box-shadow: 0 10px 25px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+    .card img { width: 100%; height: 100%; object-fit: cover; }
+    .arrow-btn { position: absolute; bottom: 15px; right: 15px; width: 40px; height: 40px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #e8334a; font-weight: bold; font-size: 20px; }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 992px) {
+      .nav-menu { display: none; } 
+    }
+
+    @media (max-width: 768px) {
+      .pct { font-size: 70px; }
+      .flat { font-size: 24px; }
+      .trust-item { min-width: 100%; font-size: 16px; }
+    }
+    .trust-item svg {
+  min-width: 32px; /* Garante que o ícone não encolha */
+  transition: transform 0.3s ease;
+}
+
+.trust-item:hover svg {
+  transform: rotate(-15deg); /* Pequena animação ao passar o mouse */
+}
+  </style>
+</head>
+<body>
+
+<header class="header-main">
+  <div class="nav-container">
+    <a href="#">
+      <!-- Substitua o src pelo link da sua logo real -->
+      <img src="anabellogo.png" alt="Anabell Logo" class="logo-img">
+    </a>
+
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="#" class="nav-link">Início</a></li>
+        <li><a href="#" class="nav-link">Infantil (RN-18)</a></li>
+        <li><a href="#" class="nav-link">Feminino</a></li>
+        <li><a href="#" class="nav-link">Gestante</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-icons">
+      <a href="https://www.instagram.com/anabellassis/" target="_blank">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      </a>
+      <a href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="gradiente-com-nuvens">
+
+
+  <div class="cloud-side cloud-l"><div class="cloud-shape" style="transform: scale(0.8);"></div></div>
+  <div class="cloud-side cloud-r"><div class="cloud-shape" style="transform: scale(1.1) rotateY(180deg);"></div></div>
+
+
+  <div class="clouds-bottom">
+    <svg class="cloud-svg" viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <rect x="0" y="160" width="1440" height="40" fill="white"/>
+      <circle cx="40"  cy="140" r="45" fill="white" opacity="0.7"/>
+      <circle cx="120" cy="135" r="52" fill="white" opacity="0.7"/>
+      <circle cx="210" cy="142" r="48" fill="white" opacity="0.7"/>
+      <circle cx="300" cy="138" r="55" fill="white" opacity="0.7"/>
+      <circle cx="395" cy="145" r="50" fill="white" opacity="0.7"/>
+      <circle cx="490" cy="130" r="58" fill="white" opacity="0.7"/>
+      <circle cx="580" cy="148" r="50" fill="white" opacity="0.7"/>
+      <circle cx="670" cy="136" r="54" fill="white" opacity="0.7"/>
+      <circle cx="760" cy="143" r="48" fill="white" opacity="0.7"/>
+      <circle cx="850" cy="132" r="56" fill="white" opacity="0.7"/>
+      <circle cx="940" cy="147" r="52" fill="white" opacity="0.7"/>
+      <circle cx="1030" cy="139" r="55" fill="white" opacity="0.7"/>
+      <circle cx="1120" cy="144" r="49" fill="white" opacity="0.7"/>
+      <circle cx="1210" cy="131" r="57" fill="white" opacity="0.7"/>
+      <circle cx="1300" cy="142" r="50" fill="white" opacity="0.7"/>
+      <circle cx="1390" cy="133" r="54" fill="white" opacity="0.7"/>
+      
+      <circle cx="0"   cy="158" r="60" fill="white"/>
+      <circle cx="90"  cy="152" r="68" fill="white"/>
+      <circle cx="195" cy="156" r="62" fill="white"/>
+      <circle cx="305" cy="150" r="72" fill="white"/>
+      <circle cx="420" cy="160" r="65" fill="white"/>
+      <circle cx="535" cy="151" r="70" fill="white"/>
+      <circle cx="645" cy="157" r="63" fill="white"/>
+      <circle cx="755" cy="149" r="71" fill="white"/>
+      <circle cx="865" cy="159" r="64" fill="white"/>
+      <circle cx="975" cy="151" r="72" fill="white"/>
+      <circle cx="1085" cy="158" r="65" fill="white"/>
+      <circle cx="1195" cy="150" r="70" fill="white"/>
+      <circle cx="1305" cy="160" r="62" fill="white"/>
+      <circle cx="1415" cy="152" r="68" fill="white"/>
+    </svg>
+  </div>
+</div>
+
+<div class="trust-bar">
+  <div class="trust-container">
+    <div class="trust-item stars">
+      ★★★★★ 
+      <span>+25.000 Clientes</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3l7 4v5c0 5-3.5 9-7 10-3.5-1-7-5-7-10V7l7-4z"/>
+      </svg> 
+      <span>Satisfação Garantida</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+      </svg> 
+      <span>Envio para todo o Brasil</span>
+    </div>
+    <div class="trust-item">
+  <!-- Ícone de Seta Circular de Retorno -->
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="1 4 1 10 7 10"></polyline>
+    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+  </svg> 
+  <span>Devolução em 30 Dias</span>
+</div>
+  </div>
+</div>
+
+<div class="white-content">
+  <div class="container">
+    <h2 class="section-title">Nova coleção</h2>
+    <div class="collection-grid">
+      <div class="card"><img src="https://images.unsplash.com/photo-1522771935876-2442c78392b4?auto=format&fit=crop&q=80&w=400" alt="Item"><a href="#" class="arrow-btn">↗</a></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=400" alt="Item"><a href="#" class="arrow-btn">↗</a></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=400" alt="Item"><a href="#" class="arrow-btn">↗</a></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=400" alt="Item"><a href="#" class="arrow-btn">↗</a></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
