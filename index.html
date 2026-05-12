@@ -117,24 +117,49 @@
     letter-spacing:2px; text-transform:uppercase; border-radius:60px;
     box-shadow:0 5px 16px rgba(0,0,0,0.15);
   }
+
+  /* ══ TRUST BAR — MOBILE ══ */
   .hero-trust {
-    position: relative; z-index: 20;
-    background: rgba(255,255,255,0.88);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255,255,255,0.6);
-    display: flex; align-items: center;
-    overflow-x: auto; overflow-y: hidden;
-    padding: 10px 16px; gap: 0;
-    scrollbar-width: none; -webkit-overflow-scrolling: touch; flex-shrink: 0;
+    position: relative;
+    z-index: 20;
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding: 10px 0;
+    flex-shrink: 0;
   }
-  .hero-trust::-webkit-scrollbar { display:none; }
-  .trust-item { display:flex; align-items:center; gap:8px; flex-shrink:0; padding:4px 12px; }
-  .trust-icon { width:30px; height:30px; background:rgba(138,191,170,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .trust-icon svg { width:16px; height:16px; stroke:var(--sage-d); fill:none; stroke-width:1.8; }
-  .trust-text strong { display:block; font-size:11px; font-weight:700; color:var(--black); white-space:nowrap; }
-  .trust-text span { font-size:10px; color:var(--gray); white-space:nowrap; }
-  .trust-text .trust-stars { color:#f5a623; font-size:13px; display:block; }
-  .trust-divider { width:1px; height:26px; background:rgba(0,0,0,0.1); flex-shrink:0; }
+  /* No mobile: esconde itens 4 e 5, mostra só os 3 primeiros */
+  .trust-item { display: none; }
+  .trust-item:nth-child(1),
+  .trust-item:nth-child(3),
+  .trust-item:nth-child(5) {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 6px 4px;
+    text-align: center;
+    border-right: 1px solid rgba(0,0,0,0.1);
+  }
+  .trust-item:nth-child(5) { border-right: none; }
+  /* Esconde todos os dividers no mobile */
+  .trust-divider { display: none; }
+
+  .trust-icon {
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .trust-icon svg { width: 22px; height: 22px; stroke: var(--black); fill: none; stroke-width: 1.5; }
+
+  .trust-text { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+  .trust-text strong { display: block; font-size: 10px; font-weight: 600; color: var(--black); line-height: 1.25; white-space: nowrap; }
+  .trust-text span { font-size: 9px; color: var(--gray); line-height: 1.2; white-space: nowrap; }
+  .trust-text .trust-stars { display: none; }
 
   /* hero-main: apenas container no mobile, flex row no desktop */
   .hero-main { display: contents; }
@@ -149,9 +174,8 @@
     .logo { font-size: 30px; }
     .nav-links a { font-size: 15px; }
 
-    /* Hero ocupa exatamente o espaço restante da tela */
     .hero {
-      margin-top: 100px; /* nav 72 + ticker 28 */
+      margin-top: 100px;
       height: calc(100vh - 100px);
       min-height: unset;
       flex-direction: column;
@@ -160,7 +184,6 @@
     }
     .hero::before { display:none; }
 
-    /* Linha principal: texto + imagem lado a lado, ocupa tudo menos a trust bar */
     .hero-main {
       display: flex;
       flex-direction: row;
@@ -169,7 +192,6 @@
       overflow: hidden;
     }
 
-    /* Lado esquerdo: conteúdo de texto */
     .hero-content {
       flex: 0 0 46%;
       display: flex;
@@ -181,7 +203,6 @@
       background: linear-gradient(135deg, #d8efe6 0%, #b8d9cc 100%);
     }
 
-    /* Lado direito: imagem */
     .hero-img-right {
       position: relative;
       inset: auto;
@@ -204,24 +225,52 @@
     .hero-subtitle { font-size:17px; max-width:400px; margin-bottom: 22px; }
     .btn-primary { font-size: 15px; padding: 15px 32px; }
 
-    /* Trust bar */
+    /* ══ TRUST BAR — DESKTOP (original, sem alteração) ══ */
     .hero-trust {
       position: relative;
       flex-shrink: 0;
       overflow-x: hidden;
       justify-content: space-around;
       padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      gap: 0;
       z-index: 20;
       background: rgba(255,255,255,0.95);
       border-top: 1px solid rgba(0,0,0,0.07);
     }
-    .trust-item { padding: 5px 10px; }
-    .trust-icon { width:38px; height:38px; }
-    .trust-icon svg { width:19px; height:19px; }
-    .trust-text strong { font-size:13px; }
-    .trust-text span { font-size:11px; }
-    .trust-text .trust-stars { font-size:13px; }
-    .trust-divider { height:30px; }
+    .trust-divider {
+      display: block;
+      width: 1px; height: 30px;
+      background: rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+    .trust-item,
+    .trust-item:nth-child(1),
+    .trust-item:nth-child(3),
+    .trust-item:nth-child(5) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      padding: 5px 10px;
+      text-align: left;
+      border-right: none;
+      flex: unset;
+    }
+    .trust-icon {
+      width: 38px; height: 38px;
+      background: rgba(138,191,170,0.2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .trust-icon svg { width: 19px; height: 19px; stroke: var(--sage-d); fill: none; stroke-width: 1.8; }
+    .trust-text { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
+    .trust-text strong { font-size: 13px; font-weight: 700; white-space: nowrap; color: var(--black); }
+    .trust-text span { font-size: 11px; color: var(--gray); white-space: nowrap; }
+    .trust-text .trust-stars { display: block; color: #f5a623; font-size: 13px; }
   }
 
   /* ══ PREMIUM SHADES ══ */
@@ -470,8 +519,8 @@
 
   <div class="hero-img-right">
     <img src="imagem.png" class="hero-photo" alt="Modelo Anabell">
-  </div><!-- /hero-img-right -->
-</div><!-- /hero-main -->
+  </div>
+</div>
 
   <div class="hero-trust">
     <div class="trust-item">
@@ -604,7 +653,7 @@
       <p class="product-price"><span class="old-price">R$ 56,00</span> R$ 48,00</p>
       <div class="color-dots"><div class="dot" style="background:#72b694"></div><div class="dot" style="background:#f0bc9c"></div></div>
     </div>
-     <div class="product-card" onclick="addToCart('Conjunto Infantil Verão', 65)">
+    <div class="product-card" onclick="addToCart('Conjunto Infantil Verão', 65)">
       <div class="product-img"><div class="product-img-inner" style="background:linear-gradient(145deg,#b3e0ff,#71b8dd);"></div><span class="product-badge badge-hot">Top</span><div class="quick-add-overlay">Adicionar</div></div>
       <div class="stars">★★★★★ <span class="reviews">(93)</span></div>
       <p class="product-name">Conjunto Infantil Verão</p>
@@ -618,7 +667,6 @@
       <p class="product-price"><span class="old-price">R$ 56,00</span> R$ 48,00</p>
       <div class="color-dots"><div class="dot" style="background:#72b694"></div><div class="dot" style="background:#f0bc9c"></div></div>
     </div>
-    
   </div>
 </section>
 
