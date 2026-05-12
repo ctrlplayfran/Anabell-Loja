@@ -117,29 +117,80 @@
     letter-spacing:2px; text-transform:uppercase; border-radius:60px;
     box-shadow:0 5px 16px rgba(0,0,0,0.15);
   }
-  .hero-trust {
-    position: relative; z-index: 20;
-    background: rgba(255,255,255,0.88);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255,255,255,0.6);
-    display: flex; align-items: center;
-    overflow-x: auto; overflow-y: hidden;
-    padding: 10px 16px; gap: 0;
-    scrollbar-width: none; -webkit-overflow-scrolling: touch; flex-shrink: 0;
-  }
-  .hero-trust::-webkit-scrollbar { display:none; }
-  .trust-item { display:flex; align-items:center; gap:8px; flex-shrink:0; padding:4px 12px; }
-  .trust-icon { width:30px; height:30px; background:rgba(138,191,170,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .trust-icon svg { width:16px; height:16px; stroke:var(--sage-d); fill:none; stroke-width:1.8; }
-  .trust-text strong { display:block; font-size:11px; font-weight:700; color:var(--black); white-space:nowrap; }
-  .trust-text span { font-size:10px; color:var(--gray); white-space:nowrap; }
-  .trust-text .trust-stars { color:#f5a623; font-size:13px; display:block; }
-  .trust-divider { width:1px; height:26px; background:rgba(0,0,0,0.1); flex-shrink:0; }
 
-  /* hero-main: apenas container no mobile, flex row no desktop */
+  /* ══ TRUST BAR — MOBILE (EMPILHADO COMO NA IMAGEM) ══ */
+  .hero-trust {
+    position: relative;
+    z-index: 20;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 20px 24px;
+    width: 100%;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    padding: 12px 16px;
+    border-radius: 60px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+    width: 100%;
+  }
+
+  .trust-divider {
+    display: none; /* remove os divisores no mobile */
+  }
+
+  .trust-icon {
+    width: 42px;
+    height: 42px;
+    background: rgba(138,191,170,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .trust-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--sage-d);
+    fill: none;
+    stroke-width: 1.8;
+  }
+
+  .trust-text {
+    flex: 1;
+  }
+
+  .trust-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  .trust-text span {
+    font-size: 11px;
+    color: var(--gray);
+  }
+
+  .trust-text .trust-stars {
+    color: #f5a623;
+    font-size: 13px;
+    display: inline-block;
+    margin-right: 6px;
+  }
+
   .hero-main { display: contents; }
 
-  /* ══ DESKTOP HERO — CORRIGIDO ══ */
+  /* ══ DESKTOP HERO — LAYOUT ORIGINAL MANTIDO ══ */
   @media (min-width:801px) {
     nav { height:72px; padding:0 32px; }
     .nav-links { display:flex; }
@@ -149,9 +200,8 @@
     .logo { font-size: 30px; }
     .nav-links a { font-size: 15px; }
 
-    /* Hero ocupa exatamente o espaço restante da tela */
     .hero {
-      margin-top: 100px; /* nav 72 + ticker 28 */
+      margin-top: 100px;
       height: calc(100vh - 100px);
       min-height: unset;
       flex-direction: column;
@@ -160,7 +210,6 @@
     }
     .hero::before { display:none; }
 
-    /* Linha principal: texto + imagem lado a lado, ocupa tudo menos a trust bar */
     .hero-main {
       display: flex;
       flex-direction: row;
@@ -169,7 +218,6 @@
       overflow: hidden;
     }
 
-    /* Lado esquerdo: conteúdo de texto */
     .hero-content {
       flex: 0 0 46%;
       display: flex;
@@ -181,7 +229,6 @@
       background: linear-gradient(135deg, #d8efe6 0%, #b8d9cc 100%);
     }
 
-    /* Lado direito: imagem */
     .hero-img-right {
       position: relative;
       inset: auto;
@@ -204,24 +251,52 @@
     .hero-subtitle { font-size:17px; max-width:400px; margin-bottom: 22px; }
     .btn-primary { font-size: 15px; padding: 15px 32px; }
 
-    /* Trust bar */
+    /* ══ TRUST BAR — DESKTOP (HORIZONTAL ORIGINAL) ══ */
     .hero-trust {
       position: relative;
+      flex-direction: row;
       flex-shrink: 0;
-      overflow-x: hidden;
+      overflow-x: auto;
       justify-content: space-around;
+      align-items: center;
       padding: 14px 40px;
-      z-index: 20;
+      gap: 0;
       background: rgba(255,255,255,0.95);
       border-top: 1px solid rgba(0,0,0,0.07);
+      border-radius: 0;
+      box-shadow: none;
     }
-    .trust-item { padding: 5px 10px; }
-    .trust-icon { width:38px; height:38px; }
-    .trust-icon svg { width:19px; height:19px; }
-    .trust-text strong { font-size:13px; }
-    .trust-text span { font-size:11px; }
-    .trust-text .trust-stars { font-size:13px; }
-    .trust-divider { height:30px; }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      padding: 5px 10px;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      width: auto;
+    }
+
+    .trust-divider {
+      display: block;
+      width: 1px;
+      height: 30px;
+      background: rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+
+    .trust-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(138,191,170,0.2);
+      border-radius: 10px;
+    }
+    .trust-icon svg { width: 19px; height: 19px; }
+    .trust-text strong { font-size: 13px; }
+    .trust-text span { font-size: 11px; }
+    .trust-text .trust-stars { font-size: 13px; }
   }
 
   /* ══ PREMIUM SHADES ══ */
@@ -310,7 +385,6 @@
   .section-title { font-family:'Barlow Condensed',sans-serif; font-size:clamp(22px,5vw,30px); font-weight:700; letter-spacing:1.5px; text-transform:uppercase; border-left:4px solid var(--pink); padding-left:12px; }
   .see-all { font-size:13px; font-weight:600; color:var(--sage-d); border-bottom:1px solid transparent; }
 
-  /* ══ PRODUCTS GRID ══ */
   .products-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
   .product-card { cursor:pointer; }
   .product-img { position:relative; aspect-ratio:3/4; background:var(--lgray); border-radius:12px; overflow:hidden; margin-bottom:10px; }
@@ -329,7 +403,6 @@
   .color-dots { display:flex; gap:5px; margin-top:6px; }
   .dot { width:12px; height:12px; border-radius:50%; border:1px solid rgba(0,0,0,0.1); }
 
-  /* ══ BESTSELLERS ══ */
   .bestseller-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
   .bestseller-item { position:relative; aspect-ratio:3/4; border-radius:12px; overflow:hidden; cursor:pointer; }
   .bestseller-bg { width:100%; height:100%; }
@@ -339,7 +412,6 @@
   .bestseller-price { font-weight:700; color:var(--yellow); margin-top:2px; font-size:14px; }
   .quick-add-bs { position:absolute; top:10px; right:10px; width:30px; height:30px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:16px; z-index:3; }
 
-  /* ══ PROMO BANNERS ══ */
   .promo-banners { display:grid; grid-template-columns:1fr; gap:4px; margin:0 0 40px; padding:0 20px; }
   .promo-card { padding:32px 24px; cursor:pointer; }
   .promo-card:first-child { background:linear-gradient(135deg,#569b84,#2e6e5a); }
@@ -349,7 +421,6 @@
   .promo-text { font-size:13px; color:rgba(255,255,255,0.8); margin-bottom:20px; }
   .btn-outline-light { display:inline-block; padding:8px 18px; border:1.5px solid rgba(255,255,255,0.5); color:white; font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:2px; font-size:12px; }
 
-  /* ══ CATEGORIES ══ */
   .categories-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:16px; }
   .category-card { position:relative; aspect-ratio:1/1; border-radius:18px; overflow:hidden; cursor:pointer; }
   .category-bg { width:100%; height:100%; }
@@ -358,7 +429,6 @@
   .category-name { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:1px; }
   .category-count { font-size:10px; opacity:.8; }
 
-  /* ══ FOOTER ══ */
   footer { background:var(--black); color:#fff; padding:40px 20px 24px; margin-top:16px; }
   .footer-grid { display:grid; grid-template-columns:1fr; gap:32px; margin-bottom:36px; }
   .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:34px; letter-spacing:2px; margin-bottom:10px; }
@@ -372,7 +442,6 @@
   .footer-links a { font-size:12px; color:rgba(255,255,255,0.4); }
   .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:18px; display:flex; flex-direction:column; gap:6px; font-size:11px; color:rgba(255,255,255,0.3); }
 
-  /* ══ CART ══ */
   .cart-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:300; opacity:0; pointer-events:none; transition:.3s; }
   .cart-overlay.open { opacity:1; pointer-events:all; }
   .cart-sidebar { position:absolute; top:0; right:0; width:min(360px,100vw); height:100%; background:white; padding:24px 16px; transform:translateX(100%); transition:transform .3s cubic-bezier(0.2,0.9,0.4,1.1); overflow-y:auto; display:flex; flex-direction:column; }
@@ -390,12 +459,10 @@
   .cart-total { display:flex; justify-content:space-between; font-weight:800; font-size:17px; margin-bottom:14px; }
   .checkout-btn { width:100%; padding:14px; background:var(--black); color:white; font-weight:700; letter-spacing:2px; font-size:13px; border-radius:40px; }
 
-  /* ══ REVEAL ══ */
   .reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .5s ease; }
   .reveal.in { opacity:1; transform:translateY(0); }
   .bg-soft { background:var(--off); }
 
-  /* ══ DESKTOP OVERRIDES ══ */
   @media (min-width:640px) {
     section { padding:52px 40px; }
     .products-grid { grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:24px; }
@@ -411,9 +478,6 @@
     .footer-grid { grid-template-columns:1.6fr 1fr; gap:40px; }
     .footer-cols { grid-template-columns:repeat(3,1fr); }
     .footer-bottom { flex-direction:row; justify-content:space-between; }
-  }
-  @media (min-width:900px) {
-    .footer-grid { grid-template-columns:2fr 1fr; }
   }
 </style>
 </head>
@@ -463,7 +527,7 @@
 <section class="hero">
 <div class="hero-main">
   <div class="hero-content">
-    <span class="hero-eyebrow">Coleção 2025</span>
+    <span class="hero-eyebrow">Coleção 2026</span>
     <h1>Moda para todas<br>as fases da vida</h1>
     <p class="hero-subtitle">Da gestante ao bebê, do infantil ao adulto — a Anabell veste sua família com estilo e carinho.</p>
     <button class="btn-primary" onclick="document.getElementById('novs').scrollIntoView({behavior:'smooth'})">Ver Coleção →</button>
@@ -471,8 +535,8 @@
 
   <div class="hero-img-right">
     <img src="imagem.png" class="hero-photo" alt="Modelo Anabell">
-  </div><!-- /hero-img-right -->
-</div><!-- /hero-main -->
+  </div>
+</div>
 
   <div class="hero-trust">
     <div class="trust-item">
@@ -533,7 +597,6 @@
   <h2 class="ps-title">Premium Shades</h2>
   <div class="ps-divider"><div class="ps-dot"></div><div class="ps-dot"></div><div class="ps-dot"></div></div>
   <div class="ps-cards">
-
     <div class="ps-card ps-featured">
       <div class="ps-card-bg" style="background:#e8a0a0;"></div>
       <div class="ps-card-label">
@@ -542,7 +605,6 @@
       </div>
       <img class="ps-person" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=280&fit=crop&crop=faces,top&auto=format" alt="Feminino" onerror="this.style.display='none'">
     </div>
-
     <div class="ps-card">
       <div class="ps-card-bg" style="background:#c9972a;"></div>
       <div class="ps-card-label">
@@ -550,7 +612,6 @@
       </div>
       <img class="ps-person" src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=200&h=280&fit=crop&crop=faces,top&auto=format" alt="Infantil" onerror="this.style.display='none'">
     </div>
-
     <div class="ps-card">
       <div class="ps-card-bg" style="background:#d4c5b5;"></div>
       <div class="ps-card-label">
@@ -558,7 +619,6 @@
       </div>
       <img class="ps-person" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=280&fit=crop&crop=faces,top&auto=format" alt="Masculino" onerror="this.style.display='none'">
     </div>
-
     <div class="ps-card">
       <div class="ps-card-bg" style="background:#8b6f5e;"></div>
       <div class="ps-card-label">
@@ -566,7 +626,6 @@
       </div>
       <img class="ps-person" src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=200&h=280&fit=crop&crop=faces,top&auto=format" alt="Feminina" onerror="this.style.display='none'">
     </div>
-
   </div>
 </div>
 
@@ -661,7 +720,6 @@
   <div class="footer-bottom"><span>© 2025 Anabell. Todos os direitos reservados.</span><span>Privacidade · Termos</span></div>
 </footer>
 
-<!-- CART -->
 <div id="cartOverlay" class="cart-overlay" onclick="closeCartOnBg(event)">
   <div class="cart-sidebar">
     <div class="cart-header"><span class="cart-title">CARRINHO (<span id="cartCount">0</span>)</span><div class="cart-close" onclick="toggleCart()">✕</div></div>
