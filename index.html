@@ -72,7 +72,7 @@
     order:2;
     position:relative;
     width:100%;
-    height:260px;
+    height:320px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -215,11 +215,9 @@
     width: 100%;
     background-image: url('fundo-parede.png');
     background-size: cover;
-    background-position: center bottom; /* chão de madeira aparece na base */
+    background-position: center bottom;
     background-repeat: no-repeat;
     background-color: #c8c7be;
-    display: flex;
-    flex-direction: column;
   }
 
   .featured-title-block {
@@ -246,15 +244,14 @@
     margin: 7px auto 0;
   }
 
-  /* Área das crianças — crescem a partir do topo, base alinhada ao chão */
+  /* Área das crianças — altura fixa, nunca encolhe */
   .featured-kids {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    align-items: flex-end;   /* crianças ancoradas na base */
+    align-items: flex-end;
     position: relative;
     z-index: 4;
-    flex: 1;
-    min-height: 320px;
+    height: 420px;   /* altura fixa — não depende do flex pai */
   }
 
   .featured-kid {
@@ -262,13 +259,12 @@
     align-items: flex-end;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 420px;   /* igual ao pai */
   }
 
   .featured-kid img {
     width: 85%;
-    height: auto;
-    max-height: 100%;
+    height: 420px;   /* altura fixa — nunca some ao rolar */
     object-fit: contain;
     object-position: bottom center;
     display: block;
@@ -286,7 +282,6 @@
     grid-template-columns: repeat(4, 1fr);
     position: relative;
     z-index: 6;
-    flex-shrink: 0;
   }
 
   .featured-card {
@@ -351,16 +346,61 @@
 
   /* Mobile featured */
   @media (max-width: 600px) {
+    .featured-slider-bg {
+      background-size: cover;
+      background-position: center 70%; /* puxa o fundo para mostrar o chão */
+      min-height: 420px;
+    }
     .featured-kids {
-      min-height: 180px;
+      min-height: 320px;
+      /* no mobile: mostra 1 coluna por vez via JS */
+      grid-template-columns: 1fr;
+    }
+    /* cada kid ocupa grid inteiro mas só o ativo aparece */
+    .featured-kid {
+      display: none;
+    }
+    .featured-kid.active {
+      display: flex;
+    }
+    .featured-cards {
+      grid-template-columns: 1fr;
+    }
+    .featured-card {
+      display: none;
+    }
+    .featured-card.active {
+      display: block;
     }
     .featured-kid img {
-      width: 95%;
+      width: 60%;
+      max-height: 300px;
     }
-    .featured-card-name { font-size: 8px; letter-spacing: 0.5px; }
-    .fc-old { font-size: 9px; }
-    .fc-new { font-size: 12px; }
-    .fc-cart { width: 24px; height: 24px; font-size: 11px; }
+    .featured-card-name { font-size: 13px; letter-spacing: 1px; }
+    .fc-old { font-size: 11px; }
+    .fc-new { font-size: 16px; }
+    .fc-cart { width: 30px; height: 30px; font-size: 14px; }
+    /* dots de navegação mobile */
+    .featured-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 0 4px;
+      background: white;
+    }
+    .featured-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #ccc;
+      transition: background .2s;
+    }
+    .featured-dot.active { background: var(--pink); }
+  }
+  @media (min-width: 601px) {
+    .featured-dots { display: none; }
+    /* garante que kids e cards nunca somem no desktop */
+    .featured-kid { display: flex !important; }
+    .featured-card { display: block !important; }
   }
 
   /* Setas do slider */
@@ -414,7 +454,7 @@
   .cart-total { display:flex; justify-content:space-between; font-weight:800; font-size:17px; margin-bottom:14px; }
   .checkout-btn { width:100%; padding:14px; background:var(--black); color:white; font-weight:700; letter-spacing:2px; font-size:13px; border-radius:40px; }
 
-  .reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .5s ease; }
+  .reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .5s ease; will-change:opacity,transform; }
   .reveal.in { opacity:1; transform:translateY(0); }
   .bg-soft { background:var(--off); }
 
@@ -459,21 +499,21 @@
     display: block;
   }
 
-  .hc-left  { width: 110px; height: 150px; z-index:1; animation: floatA 3.5s ease-in-out infinite; }
-  .hc-center{ width: 130px; height: 175px; z-index:3; animation: floatB 3.5s ease-in-out 1.2s infinite; }
-  .hc-right { width: 110px; height: 150px; z-index:2; animation: floatC 3.5s ease-in-out 0.6s infinite; }
+  .hc-left  { width: 145px; height: 195px; z-index:1; animation: floatA 3.5s ease-in-out infinite; }
+  .hc-center{ width: 170px; height: 225px; z-index:3; animation: floatB 3.5s ease-in-out 1.2s infinite; }
+  .hc-right { width: 145px; height: 195px; z-index:2; animation: floatC 3.5s ease-in-out 0.6s infinite; }
 
   @keyframes floatA {
-    0%,100% { transform: rotate(-6deg) translate(-75px, 16px); }
-    50%      { transform: rotate(-6deg) translate(-75px, 4px);  }
+    0%,100% { transform: rotate(-6deg) translate(-95px, 16px); }
+    50%      { transform: rotate(-6deg) translate(-95px, 4px);  }
   }
   @keyframes floatB {
     0%,100% { transform: rotate(0deg) translate(0px, -8px);  }
     50%      { transform: rotate(0deg) translate(0px, -22px); }
   }
   @keyframes floatC {
-    0%,100% { transform: rotate(5deg) translate(75px, 16px); }
-    50%      { transform: rotate(5deg) translate(75px, 4px);  }
+    0%,100% { transform: rotate(5deg) translate(95px, 16px); }
+    50%      { transform: rotate(5deg) translate(95px, 4px);  }
   }
 
   @media (min-width:801px) {
@@ -599,7 +639,7 @@
 </div>
 
 <!-- ══ PRODUTOS EM DESTAQUE ══ -->
-<div class="featured-section reveal">
+<div class="featured-section">
   <div class="featured-slider-outer">
     <button class="featured-arrow left" onclick="featuredSlide(-1)">&#8249;</button>
     <button class="featured-arrow right" onclick="featuredSlide(1)">&#8250;</button>
@@ -642,6 +682,7 @@
               <button class="fc-cart">&#128722;</button>
             </div>
           </div>
+          <div class="featured-dots" id="dotsSlide0"></div>
         </div>
 
         <!-- SLIDE 2 -->
@@ -674,6 +715,7 @@
               <button class="fc-cart">&#128722;</button>
             </div>
           </div>
+          <div class="featured-dots" id="dotsSlide1"></div>
         </div>
 
       </div>
@@ -776,15 +818,87 @@
 
   let featuredCurrent = 0;
   const featuredSlides = document.querySelectorAll('.featured-slide');
-  function featuredSlide(dir) {
-    featuredSlides[featuredCurrent].style.display = 'none';
-    featuredCurrent = (featuredCurrent + dir + featuredSlides.length) % featuredSlides.length;
-    featuredSlides[featuredCurrent].style.display = 'block';
+
+  // Mobile: índice do item atual dentro do slide
+  let mobileItemIndex = 0;
+
+  function isMobile() { return window.innerWidth <= 600; }
+
+  function initMobileSlide(slideEl) {
+    if (!isMobile()) return;
+    const kids = slideEl.querySelectorAll('.featured-kid');
+    const cards = slideEl.querySelectorAll('.featured-card');
+    kids.forEach((k, i) => k.classList.toggle('active', i === mobileItemIndex));
+    cards.forEach((c, i) => c.classList.toggle('active', i === mobileItemIndex));
+    const dotsEl = slideEl.querySelector('.featured-dots');
+    if (dotsEl) {
+      dotsEl.innerHTML = '';
+      kids.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'featured-dot' + (i === mobileItemIndex ? ' active' : '');
+        d.onclick = () => { mobileItemIndex = i; initMobileSlide(slideEl); };
+        dotsEl.appendChild(d);
+      });
+    }
   }
+
+  function featuredSlide(dir) {
+    const currentSlide = featuredSlides[featuredCurrent];
+    if (isMobile()) {
+      const kids = currentSlide.querySelectorAll('.featured-kid');
+      const total = kids.length;
+      mobileItemIndex = (mobileItemIndex + dir + total) % total;
+      initMobileSlide(currentSlide);
+    } else {
+      currentSlide.style.display = 'none';
+      featuredCurrent = (featuredCurrent + dir + featuredSlides.length) % featuredSlides.length;
+      featuredSlides[featuredCurrent].style.display = 'block';
+    }
+  }
+
+  // Inicializa mobile ao carregar
+  function setupFeatured() {
+    if (isMobile()) {
+      mobileItemIndex = 0;
+      featuredSlides.forEach((slide, i) => {
+        slide.style.display = i === 0 ? 'block' : 'none';
+      });
+      initMobileSlide(featuredSlides[featuredCurrent]);
+    } else {
+      // Desktop: garante que o slide atual está visível e os outros não
+      featuredSlides.forEach((slide, i) => {
+        slide.style.display = i === featuredCurrent ? 'block' : 'none';
+        // remove classes mobile dos kids/cards
+        slide.querySelectorAll('.featured-kid, .featured-card').forEach(el => {
+          el.classList.remove('active');
+          el.style.display = ''; // limpa qualquer display inline do mobile
+        });
+      });
+    }
+  }
+
+  setupFeatured();
+  window.addEventListener('resize', setupFeatured);
+
+  // Autoplay
+  let autoplayTimer = null;
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(() => { featuredSlide(1); }, 3000);
+  }
+  function stopAutoplay() {
+    if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null; }
+  }
+
+  // Pausa ao tocar, retoma depois
+  document.querySelector('.featured-slider-outer').addEventListener('touchstart', stopAutoplay);
+  document.querySelector('.featured-slider-outer').addEventListener('touchend', () => setTimeout(startAutoplay, 4000));
+
+  startAutoplay();
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
-  }, {threshold:0.1});
+  }, {threshold:0, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
