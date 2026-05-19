@@ -35,7 +35,6 @@
   .nav-links a:hover { opacity:1; color:var(--pink); }
   .nav-r { display:flex; align-items:center; gap:14px; }
   .nav-r .lang { display:none; font-size:12px; font-weight:500; text-transform:uppercase; opacity:.6; cursor:pointer; }
-  .search-ico { display:none; } /* lupa oculta no mobile */
   .ico { width:22px; height:22px; cursor:pointer; opacity:.75; stroke-width:1.6; flex-shrink:0; }
   .burger { display:none; }
   .menu-btn { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; cursor:pointer; padding:4px 6px; -webkit-tap-highlight-color:transparent; }
@@ -101,8 +100,7 @@
     nav { height:72px; padding:0 32px; }
     .nav-links { display:flex; }
     .nav-r .lang { display:block; }
-    .search-ico { display:block; } /* lupa visível no desktop */
-    .menu-btn { display:none; }   /* botão MENU oculto no desktop */
+    .menu-btn { display:none; }
     .burger { display:none; }
     .tw { top:72px; }
     .logo { font-size:30px; }
@@ -507,8 +505,8 @@
     <li><a href="#">Meninos</a></li><li><a href="#">Novidades</a></li>
   </ul>
   <div class="nav-r">
-    <svg class="ico search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" onclick="toggleCart()"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" onclick="toggleCart()"><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
   </div>
   <div class="menu-btn" onclick="toggleMobileMenu()">
     <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
