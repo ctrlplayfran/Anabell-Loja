@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>ANABELL — Moda Feminina & Infantil</title>
+<title>ANABELL — Moda Infantil</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -22,7 +22,6 @@
   button { cursor:pointer; border:none; background:none; font-family:inherit; -webkit-tap-highlight-color:transparent; }
   img { max-width:100%; display:block; }
 
-  /* ══ NAV ══ */
   nav {
     position:fixed; top:0; left:0; right:0; z-index:200;
     height:56px; display:flex; align-items:center; justify-content:space-between;
@@ -36,87 +35,61 @@
   .nav-links a:hover { opacity:1; color:var(--pink); }
   .nav-r { display:flex; align-items:center; gap:14px; }
   .nav-r .lang { display:none; font-size:12px; font-weight:500; text-transform:uppercase; opacity:.6; cursor:pointer; }
+  .search-ico { display:none; } /* lupa oculta no mobile */
   .ico { width:22px; height:22px; cursor:pointer; opacity:.75; stroke-width:1.6; flex-shrink:0; }
-  .burger { display:flex; flex-direction:column; gap:5px; cursor:pointer; padding:6px; }
+  .burger { display:none; }
+  .menu-btn { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; cursor:pointer; padding:4px 6px; -webkit-tap-highlight-color:transparent; }
+  .menu-btn svg { width:22px; height:22px; stroke:var(--black); stroke-width:1.8; fill:none; }
+  .menu-btn .menu-label { font-family:"Barlow Condensed",sans-serif; font-size:9px; font-weight:700; letter-spacing:1.5px; color:var(--black); line-height:1; text-transform:uppercase; }
   .burger span { display:block; width:22px; height:2px; background:var(--black); border-radius:2px; }
   .mobile-menu { display:none; position:fixed; top:56px; left:0; right:0; z-index:190; background:white; padding:20px 20px 28px; box-shadow:0 12px 24px rgba(0,0,0,0.08); border-bottom:1px solid rgba(0,0,0,0.06); }
   .mobile-menu.open { display:block; }
   .mobile-menu ul { list-style:none; display:flex; flex-direction:column; gap:0; }
   .mobile-menu ul li a { display:block; padding:14px 0; font-size:16px; font-weight:600; letter-spacing:.5px; text-transform:uppercase; color:var(--black); border-bottom:1px solid rgba(0,0,0,0.06); }
 
-  /* ══ TICKER ══ */
   .tw { position:fixed; top:56px; left:0; right:0; z-index:189; background:var(--black); overflow:hidden; padding:7px 0; }
   .track { display:flex; width:max-content; animation:tick 22s linear infinite; }
   .ti { font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#fff; padding:0 20px; display:flex; align-items:center; gap:10px; white-space:nowrap; }
   .td { width:4px; height:4px; background:var(--sage-l); border-radius:50%; flex-shrink:0; }
   @keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-  /* ══ HERO — MOBILE ══ */
   .hero {
     margin-top:83px;
     position:relative;
-    min-height:calc(100svh - 83px);
     background:radial-gradient(ellipse at 30% 60%, #d2ecdf, #9ac2b2);
-    display:flex; flex-direction:column; justify-content:flex-end;
+    display:flex; flex-direction:column;
     overflow:hidden;
   }
-  .hero-img-right { position:absolute; inset:0; z-index:1; }
-  .hero-photo {
-    width:100%; height:100%; object-fit:cover; object-position:center top; display:block;
-    -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0.9) 35%, rgba(0,0,0,0.05) 100%);
-    mask-image:linear-gradient(to bottom, rgba(0,0,0,0.9) 35%, rgba(0,0,0,0.05) 100%);
+  .hero-main {
+    display:flex;
+    flex-direction:column;
   }
-  .hero::before {
-    content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
-    background:linear-gradient(to bottom, rgba(154,194,178,0.1) 0%, rgba(154,194,178,0.5) 55%, rgba(154,194,178,0.95) 100%);
+  .hero-content {
+    position:relative; z-index:12;
+    padding:36px 24px 28px;
+    order:1;
   }
-  .hero-content { position:relative; z-index:12; padding:28px 20px 16px; }
-  .hero-eyebrow {
-    font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700;
-    letter-spacing:3px; text-transform:uppercase; color:var(--sage-d);
-    background:rgba(255,255,255,0.55); display:inline-block;
-    padding:3px 10px; border-radius:40px; margin-bottom:14px; width:fit-content; max-width:100%;
-  }
-  .hero-content h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(42px,11vw,72px); line-height:1.02; letter-spacing:.5px; margin-bottom:14px; color:var(--black); }
-  .hero-subtitle { font-size:14px; color:rgba(0,0,0,0.7); margin-bottom:24px; line-height:1.5; max-width:300px; }
-  .btn-primary {
-    display:inline-flex; align-items:center; gap:8px; width:fit-content;
-    padding:13px 28px; background:var(--black); color:white;
-    font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700;
-    letter-spacing:2px; text-transform:uppercase; border-radius:60px;
-    box-shadow:0 5px 16px rgba(0,0,0,0.15);
-  }
-  .hero-main { display:contents; }
-
-  /* ══ TRUST BAR — MOBILE ══ */
-  /* A trust bar fica dentro do hero mas precisa de fundo branco full-width.
-     Usamos margin negativo + padding para compensar e sair do overflow:hidden do hero.
-     A solução real: tiramos overflow:hidden do hero no mobile e deixamos só no eixo correto. */
-  .hero { overflow-x:hidden; overflow-y:visible; }
-
-  .hero-trust {
-    position:relative; z-index:20;
+  .hero-img-right {
+    order:2;
+    position:relative;
     width:100%;
-    background:#fff;
-    border-top:1px solid rgba(0,0,0,0.08);
-    display:flex; flex-direction:row; align-items:stretch;
-    padding:10px 0; flex-shrink:0;
+    height:260px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
+  .hero::before { display:none; }
 
-  /* Mobile: mostra apenas os 3 primeiros trust-items (nth-child conta dividers também)
-     Ordem dos filhos: item(1) div(2) item(3) div(4) item(5) div(6) item(7) div(8) item(9) */
+  .hero-eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--sage-d); background:rgba(255,255,255,0.55); display:inline-block; padding:3px 10px; border-radius:40px; margin-bottom:14px; width:fit-content; max-width:100%; }
+  .hero-content h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(38px,10vw,56px); line-height:1.02; letter-spacing:.5px; margin-bottom:12px; color:var(--black); }
+  .hero-subtitle { font-size:14px; color:rgba(0,0,0,0.7); margin-bottom:24px; line-height:1.5; max-width:300px; }
+  .btn-primary { display:inline-flex; align-items:center; gap:8px; width:fit-content; padding:13px 28px; background:var(--black); color:white; font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; border-radius:60px; box-shadow:0 5px 16px rgba(0,0,0,0.15); }
+
+  .hero-trust { position:relative; z-index:20; width:100%; background:#fff; border-top:1px solid rgba(0,0,0,0.08); display:flex; flex-direction:row; align-items:stretch; padding:10px 0; }
   .trust-item { display:none; }
-  .trust-item:nth-child(1),
-  .trust-item:nth-child(3),
-  .trust-item:nth-child(5) {
-    display:flex; flex:1 1 0;
-    flex-direction:column; align-items:center; justify-content:center;
-    gap:5px; padding:6px 4px; text-align:center;
-    border-right:1px solid rgba(0,0,0,0.1);
-  }
+  .trust-item:nth-child(1), .trust-item:nth-child(3), .trust-item:nth-child(5) { display:flex; flex:1 1 0; flex-direction:column; align-items:center; justify-content:center; gap:5px; padding:6px 4px; text-align:center; border-right:1px solid rgba(0,0,0,0.1); }
   .trust-item:nth-child(5) { border-right:none; }
   .trust-divider { display:none; }
-
   .trust-icon { width:28px; height:28px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .trust-icon svg { width:22px; height:22px; stroke:var(--black); fill:none; stroke-width:1.5; }
   .trust-text { display:flex; flex-direction:column; align-items:center; gap:1px; }
@@ -124,56 +97,28 @@
   .trust-text span { font-size:9px; color:var(--gray); line-height:1.2; white-space:nowrap; }
   .trust-text .trust-stars { display:none; }
 
-  /* ══ DESKTOP ══ */
   @media (min-width:801px) {
     nav { height:72px; padding:0 32px; }
     .nav-links { display:flex; }
     .nav-r .lang { display:block; }
+    .search-ico { display:block; } /* lupa visível no desktop */
+    .menu-btn { display:none; }   /* botão MENU oculto no desktop */
     .burger { display:none; }
     .tw { top:72px; }
     .logo { font-size:30px; }
     .nav-links a { font-size:15px; }
-
-    .hero {
-      margin-top:100px; height:calc(100vh - 100px);
-      min-height:unset; flex-direction:column; padding:0; overflow:hidden;
-    }
-    .hero::before { display:none; }
-    .hero-main { display:flex; flex-direction:row; flex:1 1 0; min-height:0; overflow:hidden; }
-    .hero-content {
-      flex:0 0 46%; display:flex; flex-direction:column; justify-content:center;
-      padding:40px 44px 40px 56px; position:relative; z-index:12;
-      background:linear-gradient(135deg, #d8efe6 0%, #b8d9cc 100%);
-    }
-    .hero-img-right {
-      position:relative; inset:auto; flex:0 0 54%; overflow:hidden; z-index:1;
-      background:linear-gradient(135deg, #d8efe6 0%, #b8d9cc 100%);
-    }
-    .hero-photo {
-      width:100%; height:100%; object-fit:cover; object-position:center top;
-      -webkit-mask-image:linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 8%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,1) 32%);
-      mask-image:linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 8%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,1) 32%);
-    }
+    .hero { margin-top:100px; height:calc(100vh - 100px); min-height:unset; overflow:hidden; }
+    .hero-main { display:flex; flex-direction:row; height:100%; }
+    .hero-content { flex:0 0 46%; display:flex; flex-direction:column; justify-content:center; padding:40px 44px 40px 56px; position:relative; z-index:12; background:linear-gradient(135deg, #d8efe6 0%, #b8d9cc 100%); order:1; height:auto; }
+    .hero-img-right { flex:0 0 54%; height:auto; position:relative; overflow:visible; z-index:1; background:linear-gradient(135deg, #d8efe6 0%, #b8d9cc 100%); order:2; }
+    .hero-photo { width:100%; height:100%; object-fit:cover; object-position:center top; -webkit-mask-image:linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 8%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,1) 32%); mask-image:linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 8%, rgba(0,0,0,0.7) 18%, rgba(0,0,0,1) 32%); }
     .hero-eyebrow { font-size:15px; letter-spacing:4px; }
     .hero-content h1 { font-size:clamp(52px,5vw,82px); margin-bottom:14px; }
     .hero-subtitle { font-size:17px; max-width:400px; margin-bottom:22px; }
     .btn-primary { font-size:15px; padding:15px 32px; }
-
-    /* TRUST BAR DESKTOP — original intacto */
-    .hero-trust {
-      position:relative; flex-shrink:0; overflow-x:hidden;
-      justify-content:space-around; padding:14px 40px;
-      display:flex; align-items:center; gap:0; z-index:20;
-      background:rgba(255,255,255,0.95); border-top:1px solid rgba(0,0,0,0.07);
-    }
+    .hero-trust { position:relative; flex-shrink:0; overflow-x:hidden; justify-content:space-around; padding:14px 40px; display:flex; align-items:center; gap:0; z-index:20; background:rgba(255,255,255,0.95); border-top:1px solid rgba(0,0,0,0.07); }
     .trust-divider { display:block; width:1px; height:30px; background:rgba(0,0,0,0.1); flex-shrink:0; }
-    .trust-item,
-    .trust-item:nth-child(1),
-    .trust-item:nth-child(3),
-    .trust-item:nth-child(5) {
-      display:flex; flex-direction:row; align-items:center; justify-content:flex-start;
-      gap:8px; padding:5px 10px; text-align:left; border-right:none; flex:unset;
-    }
+    .trust-item, .trust-item:nth-child(1), .trust-item:nth-child(3), .trust-item:nth-child(5) { display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:8px; padding:5px 10px; text-align:left; border-right:none; flex:unset; }
     .trust-icon { width:38px; height:38px; background:rgba(138,191,170,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .trust-icon svg { width:19px; height:19px; stroke:var(--sage-d); fill:none; stroke-width:1.8; }
     .trust-text { display:flex; flex-direction:column; align-items:flex-start; gap:1px; }
@@ -182,93 +127,38 @@
     .trust-text .trust-stars { display:block; color:#f5a623; font-size:13px; }
   }
 
-  /* ══ PREMIUM SHADES ══ */
   .premium-shades { padding:24px 12px 32px; text-align:center; background:#fff; }
   .ps-title { font-family:'DM Sans',sans-serif; font-size:clamp(20px,5vw,28px); font-weight:700; color:var(--pink); margin-bottom:6px; }
   .ps-divider { display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:20px; }
   .ps-divider::before, .ps-divider::after { content:''; display:block; height:1.5px; width:40px; background:var(--pink); opacity:.4; }
   .ps-dot { width:6px; height:6px; background:var(--pink); border-radius:50%; }
-  /* MOBILE: linha única, sem scroll, layout vertical (pessoa em cima, texto embaixo) */
-  .ps-cards {
-    display:flex; gap:6px;
-    overflow-x:visible;
-    padding:8px 0 8px;
-    flex-wrap:nowrap;
-    align-items:flex-end;
-  }
-  .ps-card {
-    flex:1 1 0;
-    min-width:0;
-    position:relative;
-    height:auto;
-    border-radius:16px;
-    overflow:hidden;
-    cursor:pointer;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-end;
-    padding:0;
-  }
+  .ps-cards { display:flex; gap:6px; overflow-x:visible; padding:8px 0 8px; flex-wrap:nowrap; align-items:flex-end; }
+  .ps-card { flex:1 1 0; min-width:0; position:relative; height:auto; border-radius:16px; overflow:hidden; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding:0; }
   .ps-card.ps-featured { flex:1 1 0; }
-  .ps-card-bg {
-    position:absolute; inset:0; border-radius:16px;
-  }
-  .ps-person {
-    display:block;
-    position:relative; z-index:2;
-    width:100%; height:80px;
-    object-fit:cover; object-position:center top;
-    pointer-events:none;
-  }
+  .ps-card-bg { position:absolute; inset:0; border-radius:16px; }
+  .ps-person { display:block; position:relative; z-index:2; width:100%; height:80px; object-fit:cover; object-position:center top; pointer-events:none; }
   .ps-card.ps-featured .ps-person { height:80px; width:100%; }
-  .ps-card-label {
-    position:relative; z-index:3;
-    width:100%;
-    background:rgba(0,0,0,0.25);
-    padding:4px 6px 5px;
-    text-align:center;
-  }
-  .ps-card-label span {
-    display:block; font-family:'DM Sans',sans-serif; font-weight:700;
-    font-size:8px; color:#fff; line-height:1.3;
-    text-shadow:0 1px 3px rgba(0,0,0,0.4);
-    white-space:normal;
-  }
+  .ps-card-label { position:relative; z-index:3; width:100%; background:rgba(0,0,0,0.25); padding:4px 6px 5px; text-align:center; }
+  .ps-card-label span { display:block; font-family:'DM Sans',sans-serif; font-weight:700; font-size:8px; color:#fff; line-height:1.3; text-shadow:0 1px 3px rgba(0,0,0,0.4); white-space:normal; }
   .ps-card-label .ps-cta { font-size:7px; font-weight:500; opacity:.9; margin-top:1px; text-decoration:underline; cursor:pointer; color:#fff; }
   @media (min-width:640px) {
     .premium-shades { padding:52px 40px 60px; }
     .ps-cards { overflow-x:visible; justify-content:center; padding:48px 0 8px; gap:12px; align-items:unset; }
-    .ps-card {
-      flex:0 0 200px; height:96px; border-radius:50px;
-      overflow:visible; padding:0 14px;
-      flex-direction:row; align-items:center; justify-content:flex-start;
-    }
+    .ps-card { flex:0 0 200px; height:96px; border-radius:50px; overflow:visible; padding:0 14px; flex-direction:row; align-items:center; justify-content:flex-start; }
     .ps-card.ps-featured { flex:0 0 220px; }
     .ps-card-bg { border-radius:50px; }
-    .ps-person {
-      display:block; position:absolute; bottom:0; right:0;
-      width:96px; height:138px;
-      object-fit:cover; object-position:center top;
-      z-index:10; pointer-events:none;
-      filter:drop-shadow(1px 0 4px rgba(0,0,0,0.1));
-    }
+    .ps-person { display:block; position:absolute; bottom:0; right:0; width:96px; height:138px; object-fit:cover; object-position:center top; z-index:10; pointer-events:none; filter:drop-shadow(1px 0 4px rgba(0,0,0,0.1)); }
     .ps-card.ps-featured .ps-person { display:block; width:108px; height:150px; }
-    .ps-card-label {
-      position:relative; z-index:3;
-      width:auto; background:none; padding:0; text-align:left;
-    }
+    .ps-card-label { position:relative; z-index:3; width:auto; background:none; padding:0; text-align:left; }
     .ps-card-label span { font-size:14px; color:#fff; white-space:normal; }
     .ps-card-label .ps-cta { font-size:10px; margin-top:3px; }
   }
 
-  /* ══ SECTIONS ══ */
   section { padding:40px 20px; }
   .section-header { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:8px; }
   .section-title { font-family:'Barlow Condensed',sans-serif; font-size:clamp(22px,5vw,30px); font-weight:700; letter-spacing:1.5px; text-transform:uppercase; border-left:4px solid var(--pink); padding-left:12px; }
   .see-all { font-size:13px; font-weight:600; color:var(--sage-d); border-bottom:1px solid transparent; }
 
-  /* ══ PRODUCTS ══ */
   .products-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
   .product-card { cursor:pointer; }
   .product-img { position:relative; aspect-ratio:3/4; background:var(--lgray); border-radius:12px; overflow:hidden; margin-bottom:10px; }
@@ -285,7 +175,6 @@
   .color-dots { display:flex; gap:5px; margin-top:6px; }
   .dot { width:12px; height:12px; border-radius:50%; border:1px solid rgba(0,0,0,0.1); }
 
-  /* ══ BESTSELLERS ══ */
   .bestseller-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
   .bestseller-item { position:relative; aspect-ratio:3/4; border-radius:12px; overflow:hidden; cursor:pointer; }
   .bestseller-bg { width:100%; height:100%; }
@@ -295,7 +184,6 @@
   .bestseller-price { font-weight:700; color:var(--yellow); margin-top:2px; font-size:14px; }
   .quick-add-bs { position:absolute; top:10px; right:10px; width:30px; height:30px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:16px; z-index:3; }
 
-  /* ══ PROMO BANNERS ══ */
   .promo-banners { display:grid; grid-template-columns:1fr; gap:4px; margin:0 0 40px; padding:0 20px; }
   .promo-card { padding:32px 24px; cursor:pointer; }
   .promo-card:first-child { background:linear-gradient(135deg,#569b84,#2e6e5a); }
@@ -305,7 +193,6 @@
   .promo-text { font-size:13px; color:rgba(255,255,255,0.8); margin-bottom:20px; }
   .btn-outline-light { display:inline-block; padding:8px 18px; border:1.5px solid rgba(255,255,255,0.5); color:white; font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:2px; font-size:12px; }
 
-  /* ══ CATEGORIES ══ */
   .categories-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:16px; }
   .category-card { position:relative; aspect-ratio:1/1; border-radius:18px; overflow:hidden; cursor:pointer; }
   .category-bg { width:100%; height:100%; }
@@ -314,7 +201,191 @@
   .category-name { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:1px; }
   .category-count { font-size:10px; opacity:.8; }
 
-  /* ══ FOOTER ══ */
+  /* ══ PRODUTOS EM DESTAQUE — CORRIGIDO ══ */
+  .featured-section {
+    padding: 0;
+    position: relative;
+  }
+
+  .featured-slider-outer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-slider-bg {
+    position: relative;
+    width: 100%;
+    background-image: url('fundo-parede.png');
+    background-size: cover;
+    background-position: center bottom; /* chão de madeira aparece na base */
+    background-repeat: no-repeat;
+    background-color: #c8c7be;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featured-title-block {
+    text-align: center;
+    padding: 32px 0 0;
+    position: relative;
+    z-index: 5;
+    flex-shrink: 0;
+  }
+
+  .featured-title-block h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(20px, 5vw, 28px);
+    font-weight: 800;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #111;
+  }
+
+  .featured-title-line {
+    width: 36px;
+    height: 3px;
+    background: #333;
+    margin: 7px auto 0;
+  }
+
+  /* Área das crianças — crescem a partir do topo, base alinhada ao chão */
+  .featured-kids {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: flex-end;   /* crianças ancoradas na base */
+    position: relative;
+    z-index: 4;
+    flex: 1;
+    min-height: 320px;
+  }
+
+  .featured-kid {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .featured-kid img {
+    width: 85%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    display: block;
+    transition: transform .3s;
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.20));
+  }
+
+  .featured-kid:hover img {
+    transform: scale(1.03) translateY(-6px);
+  }
+
+  /* Cards brancos colados na base das crianças */
+  .featured-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+    z-index: 6;
+    flex-shrink: 0;
+  }
+
+  .featured-card {
+    background: white;
+    margin: 0 2px;
+    padding: 11px 10px 13px;
+    text-align: center;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.13);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: border-color .2s;
+  }
+
+  .featured-card:hover { border-bottom-color: var(--pink); }
+
+  .featured-card-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #111;
+    margin-bottom: 5px;
+  }
+
+  .featured-card-prices {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .fc-old {
+    font-size: 11px;
+    color: #bbb;
+    text-decoration: line-through;
+    font-weight: 500;
+  }
+
+  .fc-new {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .fc-cart {
+    background: none;
+    border: 1.5px solid #444;
+    border-radius: 3px;
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: all .2s;
+    color: #444;
+  }
+
+  .fc-cart:hover { background: var(--pink); border-color: var(--pink); color: white; }
+
+  /* Mobile featured */
+  @media (max-width: 600px) {
+    .featured-kids {
+      min-height: 180px;
+    }
+    .featured-kid img {
+      width: 95%;
+    }
+    .featured-card-name { font-size: 8px; letter-spacing: 0.5px; }
+    .fc-old { font-size: 9px; }
+    .fc-new { font-size: 12px; }
+    .fc-cart { width: 24px; height: 24px; font-size: 11px; }
+  }
+
+  /* Setas do slider */
+  .featured-arrow {
+    position: absolute;
+    top: 46%;
+    transform: translateY(-50%);
+    width: 30px; height: 30px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    transition: background .2s;
+    border-radius: 2px;
+  }
+  .featured-arrow:hover { background: rgba(0,0,0,0.85); }
+  .featured-arrow.left { left: 8px; }
+  .featured-arrow.right { right: 8px; }
+
   footer { background:var(--black); color:#fff; padding:40px 20px 24px; margin-top:16px; }
   .footer-grid { display:grid; grid-template-columns:1fr; gap:32px; margin-bottom:36px; }
   .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:34px; letter-spacing:2px; margin-bottom:10px; }
@@ -328,7 +399,6 @@
   .footer-links a { font-size:12px; color:rgba(255,255,255,0.4); }
   .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:18px; display:flex; flex-direction:column; gap:6px; font-size:11px; color:rgba(255,255,255,0.3); }
 
-  /* ══ CART ══ */
   .cart-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:300; opacity:0; pointer-events:none; transition:.3s; }
   .cart-overlay.open { opacity:1; pointer-events:all; }
   .cart-sidebar { position:absolute; top:0; right:0; width:min(360px,100vw); height:100%; background:white; padding:24px 16px; transform:translateX(100%); transition:transform .3s cubic-bezier(0.2,0.9,0.4,1.1); overflow-y:auto; display:flex; flex-direction:column; }
@@ -346,12 +416,10 @@
   .cart-total { display:flex; justify-content:space-between; font-weight:800; font-size:17px; margin-bottom:14px; }
   .checkout-btn { width:100%; padding:14px; background:var(--black); color:white; font-weight:700; letter-spacing:2px; font-size:13px; border-radius:40px; }
 
-  /* ══ REVEAL ══ */
   .reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .5s ease; }
   .reveal.in { opacity:1; transform:translateY(0); }
   .bg-soft { background:var(--off); }
 
-  /* ══ DESKTOP OVERRIDES ══ */
   @media (min-width:640px) {
     section { padding:52px 40px; }
     .products-grid { grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:24px; }
@@ -368,7 +436,66 @@
     .footer-cols { grid-template-columns:repeat(3,1fr); }
     .footer-bottom { flex-direction:row; justify-content:space-between; }
   }
-  @media (min-width:900px) { .footer-grid { grid-template-columns:2fr 1fr; } }
+
+  /* ══ HERO CARDS (3 fotos sobrepostas) ══ */
+  .hero-cards {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hc {
+    position: absolute;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+  }
+
+  .hc img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hc-left  { width: 110px; height: 150px; z-index:1; animation: floatA 3.5s ease-in-out infinite; }
+  .hc-center{ width: 130px; height: 175px; z-index:3; animation: floatB 3.5s ease-in-out 1.2s infinite; }
+  .hc-right { width: 110px; height: 150px; z-index:2; animation: floatC 3.5s ease-in-out 0.6s infinite; }
+
+  @keyframes floatA {
+    0%,100% { transform: rotate(-6deg) translate(-75px, 16px); }
+    50%      { transform: rotate(-6deg) translate(-75px, 4px);  }
+  }
+  @keyframes floatB {
+    0%,100% { transform: rotate(0deg) translate(0px, -8px);  }
+    50%      { transform: rotate(0deg) translate(0px, -22px); }
+  }
+  @keyframes floatC {
+    0%,100% { transform: rotate(5deg) translate(75px, 16px); }
+    50%      { transform: rotate(5deg) translate(75px, 4px);  }
+  }
+
+  @media (min-width:801px) {
+    .hc-left  { width: 200px; height: 270px; animation: floatA-d 3.5s ease-in-out infinite; }
+    .hc-center{ width: 230px; height: 300px; animation: floatB-d 3.5s ease-in-out 1.2s infinite; }
+    .hc-right { width: 200px; height: 270px; animation: floatC-d 3.5s ease-in-out 0.6s infinite; }
+
+    @keyframes floatA-d {
+      0%,100% { transform: rotate(-6deg) translate(-155px, 30px); }
+      50%      { transform: rotate(-6deg) translate(-155px, 14px); }
+    }
+    @keyframes floatB-d {
+      0%,100% { transform: rotate(0deg) translate(0px, -20px); }
+      50%      { transform: rotate(0deg) translate(0px, -36px); }
+    }
+    @keyframes floatC-d {
+      0%,100% { transform: rotate(5deg) translate(155px, 30px); }
+      50%      { transform: rotate(5deg) translate(155px, 14px); }
+    }
+  }
 </style>
 </head>
 <body>
@@ -376,55 +503,67 @@
 <nav>
   <a class="logo" href="#">ANABELL</a>
   <ul class="nav-links">
-    <li><a href="#">Feminino</a></li><li><a href="#">Infantil</a></li>
-    <li><a href="#">Gestante</a></li><li><a href="#">Novidades</a></li>
+    <li><a href="#">Bebês</a></li><li><a href="#">Meninas</a></li>
+    <li><a href="#">Meninos</a></li><li><a href="#">Novidades</a></li>
   </ul>
   <div class="nav-r">
-    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+    <svg class="ico search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
     <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" onclick="toggleCart()"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
   </div>
-  <div class="burger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+  <div class="menu-btn" onclick="toggleMobileMenu()">
+    <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <span class="menu-label">MENU</span>
+  </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
   <ul>
-    <li><a href="#">Feminino</a></li><li><a href="#">Infantil</a></li>
-    <li><a href="#">Gestante</a></li><li><a href="#">Novidades</a></li>
+    <li><a href="#">Bebês</a></li><li><a href="#">Meninas</a></li>
+    <li><a href="#">Meninos</a></li><li><a href="#">Novidades</a></li>
   </ul>
 </div>
 
 <div class="tw">
   <div class="track">
-    <span class="ti"><span class="td"></span>Moda Feminina &amp; Infantil</span>
-    <span class="ti"><span class="td"></span>Loja do RN ao 18 anos</span>
+    <span class="ti"><span class="td"></span>Moda Infantil</span>
+    <span class="ti"><span class="td"></span>Do RN aos 18 anos</span>
     <span class="ti"><span class="td"></span>Envio para todo o Brasil</span>
     <span class="ti"><span class="td"></span>Novidades Semanais</span>
-    <span class="ti"><span class="td"></span>Feminino Adulto &amp; Gestante</span>
+    <span class="ti"><span class="td"></span>Roupas com qualidade e carinho</span>
     <span class="ti"><span class="td"></span>Assis Chateaubriand — PR</span>
-    <span class="ti"><span class="td"></span>Moda Feminina &amp; Infantil</span>
-    <span class="ti"><span class="td"></span>Loja do RN ao 18 anos</span>
+    <span class="ti"><span class="td"></span>Moda Infantil</span>
+    <span class="ti"><span class="td"></span>Do RN aos 18 anos</span>
     <span class="ti"><span class="td"></span>Envio para todo o Brasil</span>
     <span class="ti"><span class="td"></span>Novidades Semanais</span>
   </div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-main">
     <div class="hero-content">
-      <span class="hero-eyebrow">Coleção 2026</span>
-      <h1>Moda para todas<br>as fases da vida</h1>
-      <p class="hero-subtitle">Da gestante ao bebê, do infantil ao adulto - a Anabell veste sua família com estilo e carinho.</p>
+      <span class="hero-eyebrow">Coleção Infantil 2026</span>
+      <h1>Moda infantil<br>cheia de alegria</h1>
+      <p class="hero-subtitle">Do recém-nascido aos 18 anos — roupas confortáveis, coloridas e com muito estilo para os pequenos.</p>
       <button class="btn-primary" onclick="document.getElementById('novs').scrollIntoView({behavior:'smooth'})">Ver Coleção →</button>
     </div>
     <div class="hero-img-right">
-      <img src="imagem.png" class="hero-photo" alt="Modelo Anabell">
+      <div class="hero-cards">
+        <div class="hc hc-left">
+          <img src="crianca1.png" alt="Foto 1" onerror="this.src='https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&q=80'">
+        </div>
+        <div class="hc hc-center">
+          <img src="infantil.png" alt="Foto 2" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80'">
+        </div>
+        <div class="hc hc-right">
+          <img src="crianca2.png" alt="Foto 3" onerror="this.src='https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=400&q=80'">
+        </div>
+      </div>
     </div>
   </div>
   <div class="hero-trust">
     <div class="trust-item">
       <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-      <div class="trust-text"><span class="trust-stars">★★★★★</span><strong>+25.000 Clientes</strong><span>Avaliação 5 estrelas</span></div>
+      <div class="trust-text"><span class="trust-stars">★★★★★</span><strong>+25.000 Famílias</strong><span>Avaliação 5 estrelas</span></div>
     </div>
     <div class="trust-divider"></div>
     <div class="trust-item">
@@ -449,122 +588,146 @@
   </div>
 </section>
 
-<!-- PREMIUM SHADES -->
 <div class="premium-shades reveal">
   <h2 class="ps-title">CATEGORIAS</h2>
   <div class="ps-divider"><div class="ps-dot"></div><div class="ps-dot"></div><div class="ps-dot"></div></div>
   <div class="ps-cards">
-    <div class="ps-card ps-featured">
-      <div class="ps-card-bg" style="background:#e8a0a0;"></div>
-      <div class="ps-card-label"><span><br>Gestante</span></div>
-      <img class="ps-person" src="gestante.png" alt="Gestante" onerror="this.style.display='none'">
-    </div>
-    <div class="ps-card">
-      <div class="ps-card-bg" style="background:#c9972a;"></div>
-      <div class="ps-card-label"><span>Moda<br>Infantil</span></div>
-      <img class="ps-person" src="infantil.png" alt="Infantil" onerror="this.style.display='none'">
-    </div>
-    <div class="ps-card">
-      <div class="ps-card-bg" style="background:#d4c5b5;"></div>
-      <div class="ps-card-label"><span style="color:rgba(0,0,0,0.65);">Moda<br>Masculina</span></div>
-      <img class="ps-person" src="masculino.png" alt="Masculino" onerror="this.style.display='none'">
-    </div>
-    <div class="ps-card">
-      <div class="ps-card-bg" style="background:#8b6f5e;"></div>
-      <div class="ps-card-label"><span>Moda<br>Feminina</span></div>
-      <img class="ps-person" src="feminina.png" alt="Feminina" onerror="this.style.display='none'">
-    </div>
-    <div class="ps-card">
-      <div class="ps-card-bg" style="background:#b8d8e8;"></div>
-      <div class="ps-card-label"><span style="color:rgba(0,0,0,0.65);">Recém<br>Nascido</span></div>
-      <img class="ps-person" src="recem-nascido.png" alt="Recém Nascido" onerror="this.style.display='none'">
+    <div class="ps-card ps-featured"><div class="ps-card-bg" style="background:#f9c8d4;"></div><div class="ps-card-label"><span>Recém<br>Nascido</span></div><img class="ps-person" src="recem-nascido.png" alt="RN" onerror="this.style.display='none'"></div>
+    <div class="ps-card"><div class="ps-card-bg" style="background:#f4a0b8;"></div><div class="ps-card-label"><span>Meninas<br>1–8 anos</span></div><img class="ps-person" src="crianca4.png" alt="Meninas pequenas" onerror="this.style.display='none'"></div>
+    <div class="ps-card"><div class="ps-card-bg" style="background:#d45878;"></div><div class="ps-card-label"><span>Meninas<br>9–18 anos</span></div><img class="ps-person" src="crianca1.png" alt="Meninas grandes" onerror="this.style.display='none'"></div>
+    <div class="ps-card"><div class="ps-card-bg" style="background:#6db3e0;"></div><div class="ps-card-label"><span>Meninos<br>1–8 anos</span></div><img class="ps-person" src="infantil.png" alt="Meninos pequenos" onerror="this.style.display='none'"></div>
+    <div class="ps-card"><div class="ps-card-bg" style="background:#3276b0;"></div><div class="ps-card-label"><span>Meninos<br>9–18 anos</span></div><img class="ps-person" src="crianca2.png" alt="Meninos grandes" onerror="this.style.display='none'"></div>
+  </div>
+</div>
+
+<!-- ══ PRODUTOS EM DESTAQUE ══ -->
+<div class="featured-section reveal">
+  <div class="featured-slider-outer">
+    <button class="featured-arrow left" onclick="featuredSlide(-1)">&#8249;</button>
+    <button class="featured-arrow right" onclick="featuredSlide(1)">&#8250;</button>
+
+    <div class="featured-slider-bg">
+      <div class="featured-title-block">
+        <h2>Produtos em Destaque</h2>
+        <div class="featured-title-line"></div>
+      </div>
+
+      <div id="featuredSlides">
+
+        <!-- SLIDE 1 -->
+        <div class="featured-slide" data-slide="0">
+          <div class="featured-kids">
+            <div class="featured-kid"><img src="crianca1.png" alt="Roupa 1" onerror="this.style.visibility='hidden'"></div>
+            <div class="featured-kid"><img src="crianca2.png" alt="Roupa 2" onerror="this.style.visibility='hidden'"></div>
+            <div class="featured-kid"><img src="crianca3.png" alt="Roupa 3" onerror="this.style.visibility='hidden'"></div>
+            <div class="featured-kid"><img src="crianca4.png" alt="Roupa 4" onerror="this.style.visibility='hidden'"></div>
+          </div>
+          <div class="featured-cards">
+            <div class="featured-card" onclick="addToCart('Nome da Roupa 1', 64.90)">
+              <div class="featured-card-name">Nome da Roupa 1</div>
+              <div class="featured-card-prices"><span class="fc-old">R$89,90</span><span class="fc-new">R$64,90</span></div>
+              <button class="fc-cart">&#128722;</button>
+            </div>
+            <div class="featured-card" onclick="addToCart('Nome da Roupa 2', 89.90)">
+              <div class="featured-card-name">Nome da Roupa 2</div>
+              <div class="featured-card-prices"><span class="fc-old">R$129,90</span><span class="fc-new">R$89,90</span></div>
+              <button class="fc-cart">&#128722;</button>
+            </div>
+            <div class="featured-card" onclick="addToCart('Nome da Roupa 3', 44.90)">
+              <div class="featured-card-name">Nome da Roupa 3</div>
+              <div class="featured-card-prices"><span class="fc-old">R$59,90</span><span class="fc-new">R$44,90</span></div>
+              <button class="fc-cart">&#128722;</button>
+            </div>
+            <div class="featured-card" onclick="addToCart('Nome da Roupa 4', 79.90)">
+              <div class="featured-card-name">Nome da Roupa 4</div>
+              <div class="featured-card-prices"><span class="fc-old">R$109,90</span><span class="fc-new">R$79,90</span></div>
+              <button class="fc-cart">&#128722;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="featured-slide" data-slide="1" style="display:none">
+          <div class="featured-kids">
+            <div class="featured-kid"><img src="crianca5.png" alt="Roupa 5" onerror="this.style.visibility='hidden'"></div>
+            <div class="featured-kid"><img src="crianca6.png" alt="Roupa 6" onerror="this.style.visibility='hidden'"></div>
+            <div class="featured-kid"><img src="crianca7.png" alt="Roupa 7" onerror="this.style.visibility='hidden'"></div>
+            <div class="featured-kid"><img src="crianca8.png" alt="Roupa 8" onerror="this.style.visibility='hidden'"></div>
+          </div>
+          <div class="featured-cards">
+            <div class="featured-card" onclick="addToCart('Nome da Roupa 5', 59.90)">
+              <div class="featured-card-name">Nome da Roupa 5</div>
+              <div class="featured-card-prices"><span class="fc-old">R$74,90</span><span class="fc-new">R$59,90</span></div>
+              <button class="fc-cart">&#128722;</button>
+            </div>
+            <div class="featured-card" onclick="addToCart('Nome da Roupa 6', 49.90)">
+              <div class="featured-card-name">Nome da Roupa 6</div>
+              <div class="featured-card-prices"><span class="fc-old">R$69,90</span><span class="fc-new">R$49,90</span></div>
+              <button class="fc-cart">&#128722;</button>
+            </div>
+            <div class="featured-card" onclick="addToCart('Nome da Roupa 7', 64.90)">
+              <div class="featured-card-name">Nome da Roupa 7</div>
+              <div class="featured-card-prices"><span class="fc-old">R$79,90</span><span class="fc-new">R$64,90</span></div>
+              <button class="fc-cart">&#128722;</button>
+            </div>
+            <div class="featured-card" onclick="addToCart('Nome da Roupa 8', 39.90)">
+              <div class="featured-card-name">Nome da Roupa 8</div>
+              <div class="featured-card-prices"><span class="fc-old">R$54,90</span><span class="fc-new">R$39,90</span></div>
+              <button class="fc-cart">&#128722;</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
 
-<!-- NOVIDADES -->
 <section id="novs" class="reveal">
-  <div class="section-header"><h2 class="section-title">Novidades</h2><button class="see-all">Ver Tudo →</button></div>
+  <div class="section-header"><h2 class="section-title">Novidades Infantis</h2><button class="see-all">Ver Tudo →</button></div>
   <div class="products-grid">
-    <div class="product-card" onclick="addToCart('Vestido Floral Gestante',89)">
-      <div class="product-img"><div class="product-img-inner" style="background:linear-gradient(135deg,#fcd9e6,#e2a9c2);"></div><span class="product-badge badge-new">Novo</span><button class="wishlist-btn">♡</button><div class="quick-add-overlay">Adicionar</div></div>
-      <div class="stars">★★★★★ <span class="reviews">(47)</span></div><p class="product-name">Vestido Floral Gestante</p><p class="product-price">R$ 89,00</p>
-      <div class="color-dots"><div class="dot" style="background:#e878a8"></div><div class="dot" style="background:#78d0b0"></div></div>
-    </div>
-    <div class="product-card" onclick="addToCart('Conjunto Infantil Verão',65)">
-      <div class="product-img"><div class="product-img-inner" style="background:linear-gradient(145deg,#b3e0ff,#71b8dd);"></div><span class="product-badge badge-hot">Top</span><div class="quick-add-overlay">Adicionar</div></div>
-      <div class="stars">★★★★★ <span class="reviews">(93)</span></div><p class="product-name">Conjunto Infantil Verão</p><p class="product-price">R$ 65,00</p>
-      <div class="color-dots"><div class="dot" style="background:#4cafcf"></div><div class="dot" style="background:#f5bc70"></div></div>
-    </div>
-    <div class="product-card" onclick="addToCart('Blusa Feminina Listrada',55)">
-      <div class="product-img"><div class="product-img-inner" style="background:linear-gradient(145deg,#f3e0ec,#dbb0c4);"></div><div class="quick-add-overlay">Adicionar</div></div>
-      <div class="stars">★★★★☆ <span class="reviews">(61)</span></div><p class="product-name">Blusa Feminina Listrada</p><p class="product-price">R$ 55,00</p>
-      <div class="color-dots"><div class="dot" style="background:#c9a8bc"></div><div class="dot" style="background:#98bbd9"></div></div>
-    </div>
-    <div class="product-card" onclick="addToCart('Pijama Infantil RN',48)">
-      <div class="product-img"><div class="product-img-inner" style="background:linear-gradient(145deg,#bde5cf,#72b694);"></div><span class="product-badge badge-sale">-15%</span><div class="quick-add-overlay">Adicionar</div></div>
-      <div class="stars">★★★★★ <span class="reviews">(128)</span></div><p class="product-name">Pijama Infantil RN</p><p class="product-price"><span class="old-price">R$ 56,00</span> R$ 48,00</p>
-      <div class="color-dots"><div class="dot" style="background:#72b694"></div><div class="dot" style="background:#f0bc9c"></div></div>
-    </div>
-    <div class="product-card" onclick="addToCart('Conjunto Infantil Verão',65)">
-      <div class="product-img"><div class="product-img-inner" style="background:linear-gradient(145deg,#b3e0ff,#71b8dd);"></div><span class="product-badge badge-hot">Top</span><div class="quick-add-overlay">Adicionar</div></div>
-      <div class="stars">★★★★★ <span class="reviews">(93)</span></div><p class="product-name">Conjunto Infantil Verão</p><p class="product-price">R$ 65,00</p>
-      <div class="color-dots"><div class="dot" style="background:#4cafcf"></div><div class="dot" style="background:#f5bc70"></div></div>
-    </div>
-    <div class="product-card" onclick="addToCart('Pijama Infantil RN',48)">
-      <div class="product-img"><div class="product-img-inner" style="background:linear-gradient(145deg,#bde5cf,#72b694);"></div><span class="product-badge badge-sale">-15%</span><div class="quick-add-overlay">Adicionar</div></div>
-      <div class="stars">★★★★★ <span class="reviews">(128)</span></div><p class="product-name">Pijama Infantil RN</p><p class="product-price"><span class="old-price">R$ 56,00</span> R$ 48,00</p>
-      <div class="color-dots"><div class="dot" style="background:#72b694"></div><div class="dot" style="background:#f0bc9c"></div></div>
-    </div>
+    <div class="product-card" onclick="addToCart('Vestido Floral Infantil',89)"><div class="product-img"><div class="product-img-inner" style="background:linear-gradient(135deg,#fcd9e6,#e2a9c2);"></div><span class="product-badge badge-new">Novo</span><button class="wishlist-btn">♡</button><div class="quick-add-overlay">Adicionar</div></div><div class="stars">★★★★★ <span class="reviews">(47)</span></div><p class="product-name">Vestido Floral Infantil</p><p class="product-price">R$ 89,00</p><div class="color-dots"><div class="dot" style="background:#e878a8"></div><div class="dot" style="background:#78d0b0"></div></div></div>
+    <div class="product-card" onclick="addToCart('Conjunto Infantil Verão',65)"><div class="product-img"><div class="product-img-inner" style="background:linear-gradient(145deg,#b3e0ff,#71b8dd);"></div><span class="product-badge badge-hot">Top</span><div class="quick-add-overlay">Adicionar</div></div><div class="stars">★★★★★ <span class="reviews">(93)</span></div><p class="product-name">Conjunto Infantil Verão</p><p class="product-price">R$ 65,00</p><div class="color-dots"><div class="dot" style="background:#4cafcf"></div><div class="dot" style="background:#f5bc70"></div></div></div>
+    <div class="product-card" onclick="addToCart('Blusa Infantil Listrada',55)"><div class="product-img"><div class="product-img-inner" style="background:linear-gradient(145deg,#f3e0ec,#dbb0c4);"></div><div class="quick-add-overlay">Adicionar</div></div><div class="stars">★★★★☆ <span class="reviews">(61)</span></div><p class="product-name">Blusa Infantil Listrada</p><p class="product-price">R$ 55,00</p><div class="color-dots"><div class="dot" style="background:#c9a8bc"></div><div class="dot" style="background:#98bbd9"></div></div></div>
+    <div class="product-card" onclick="addToCart('Pijama Infantil',48)"><div class="product-img"><div class="product-img-inner" style="background:linear-gradient(145deg,#bde5cf,#72b694);"></div><span class="product-badge badge-sale">-15%</span><div class="quick-add-overlay">Adicionar</div></div><div class="stars">★★★★★ <span class="reviews">(128)</span></div><p class="product-name">Pijama Infantil</p><p class="product-price"><span class="old-price">R$ 56,00</span> R$ 48,00</p><div class="color-dots"><div class="dot" style="background:#72b694"></div><div class="dot" style="background:#f0bc9c"></div></div></div>
+    <div class="product-card" onclick="addToCart('Conjunto Infantil Verão',65)"><div class="product-img"><div class="product-img-inner" style="background:linear-gradient(145deg,#b3e0ff,#71b8dd);"></div><span class="product-badge badge-hot">Top</span><div class="quick-add-overlay">Adicionar</div></div><div class="stars">★★★★★ <span class="reviews">(93)</span></div><p class="product-name">Conjunto Infantil Verão</p><p class="product-price">R$ 65,00</p><div class="color-dots"><div class="dot" style="background:#4cafcf"></div><div class="dot" style="background:#f5bc70"></div></div></div>
+    <div class="product-card" onclick="addToCart('Pijama Infantil',48)"><div class="product-img"><div class="product-img-inner" style="background:linear-gradient(145deg,#bde5cf,#72b694);"></div><span class="product-badge badge-sale">-15%</span><div class="quick-add-overlay">Adicionar</div></div><div class="stars">★★★★★ <span class="reviews">(128)</span></div><p class="product-name">Pijama Infantil</p><p class="product-price"><span class="old-price">R$ 56,00</span> R$ 48,00</p><div class="color-dots"><div class="dot" style="background:#72b694"></div><div class="dot" style="background:#f0bc9c"></div></div></div>
   </div>
 </section>
 
-<!-- MAIS VENDIDOS -->
 <section class="bg-soft reveal">
   <div class="section-header"><h2 class="section-title">Mais Vendidos</h2><button class="see-all">Ver Tudo →</button></div>
   <div class="bestseller-grid">
-    <div class="bestseller-item" onclick="addToCart('Body Bebê Estampado',35)">
-      <div class="bestseller-bg" style="background:linear-gradient(125deg,#fbcddc,#e595b0);"></div><div class="bestseller-overlay"></div><button class="quick-add-bs">+</button>
-      <div class="bestseller-info"><div class="bestseller-title">Body Bebê</div><div class="stars" style="color:#f5c420;">★★★★★ <span style="font-size:10px;">(211)</span></div><div class="bestseller-price">R$ 35,00</div></div>
-    </div>
-    <div class="bestseller-item" onclick="addToCart('Vestido Batizado Infantil',120)">
-      <div class="bestseller-bg" style="background:linear-gradient(135deg,#f0edff,#cbc0e0);"></div><div class="bestseller-overlay"></div><button class="quick-add-bs">+</button>
-      <div class="bestseller-info"><div class="bestseller-title">Vestido Batizado</div><div class="stars" style="color:#f5c420;">★★★★★ <span style="font-size:10px;">(88)</span></div><div class="bestseller-price">R$ 120,00</div></div>
-    </div>
-    <div class="bestseller-item" onclick="addToCart('Calça Gestante Comfort',79)">
-      <div class="bestseller-bg" style="background:linear-gradient(135deg,#cfdff5,#8fa4ca);"></div><div class="bestseller-overlay"></div><button class="quick-add-bs">+</button>
-      <div class="bestseller-info"><div class="bestseller-title">Calça Gestante</div><div class="stars" style="color:#f5c420;">★★★★★ <span style="font-size:10px;">(174)</span></div><div class="bestseller-price">R$ 79,00</div></div>
-    </div>
+    <div class="bestseller-item" onclick="addToCart('Body Bebê Estampado',35)"><div class="bestseller-bg" style="background:linear-gradient(125deg,#fbcddc,#e595b0);"></div><div class="bestseller-overlay"></div><button class="quick-add-bs">+</button><div class="bestseller-info"><div class="bestseller-title">Body Bebê</div><div class="stars" style="color:#f5c420;">★★★★★ <span style="font-size:10px;">(211)</span></div><div class="bestseller-price">R$ 35,00</div></div></div>
+    <div class="bestseller-item" onclick="addToCart('Vestido Batizado Infantil',120)"><div class="bestseller-bg" style="background:linear-gradient(135deg,#f0edff,#cbc0e0);"></div><div class="bestseller-overlay"></div><button class="quick-add-bs">+</button><div class="bestseller-info"><div class="bestseller-title">Vestido Batizado</div><div class="stars" style="color:#f5c420;">★★★★★ <span style="font-size:10px;">(88)</span></div><div class="bestseller-price">R$ 120,00</div></div></div>
+    <div class="bestseller-item" onclick="addToCart('Calça Infantil Comfort',79)"><div class="bestseller-bg" style="background:linear-gradient(135deg,#cfdff5,#8fa4ca);"></div><div class="bestseller-overlay"></div><button class="quick-add-bs">+</button><div class="bestseller-info"><div class="bestseller-title">Calça Infantil</div><div class="stars" style="color:#f5c420;">★★★★★ <span style="font-size:10px;">(174)</span></div><div class="bestseller-price">R$ 79,00</div></div></div>
   </div>
 </section>
 
-<!-- PROMO BANNERS -->
 <div class="promo-banners reveal">
-  <div class="promo-card"><p class="promo-eyebrow">Coleção Especial</p><div class="promo-title">MODA<br>GESTANTE</div><p class="promo-text">Peças exclusivas com conforto e estilo.</p><button class="btn-outline-light">Ver Coleção</button></div>
-  <div class="promo-card"><p class="promo-eyebrow">Envio Rápido</p><div class="promo-title">TODO<br>O BRASIL</div><p class="promo-text">Novidades toda semana direto na sua porta.</p><button class="btn-outline-light">WhatsApp →</button></div>
+  <div class="promo-card"><p class="promo-eyebrow">Coleção Especial</p><div class="promo-title">MODA<br>INFANTIL</div><p class="promo-text">Peças exclusivas para os pequenos com conforto e estilo.</p><button class="btn-outline-light">Ver Coleção</button></div>
+  <div class="promo-card"><p class="promo-eyebrow">Frete Grátis acima de R$199</p><div class="promo-title">TODO<br>O BRASIL</div><p class="promo-text">Novidades infantis toda semana direto na sua porta.</p><button class="btn-outline-light">WhatsApp →</button></div>
 </div>
 
-<!-- CATEGORIAS -->
 <section class="reveal">
   <div class="section-header"><h2 class="section-title">Categorias</h2></div>
   <div class="categories-grid">
-    <div class="category-card"><div class="category-bg" style="background:linear-gradient(145deg,#e085a8,#b8426a);"></div><div class="category-overlay"></div><div class="category-label"><div class="category-name">FEMININO</div><div class="category-count">218 peças</div></div></div>
-    <div class="category-card"><div class="category-bg" style="background:linear-gradient(135deg,#6db3e0,#3276b0);"></div><div class="category-overlay"></div><div class="category-label"><div class="category-name">INFANTIL</div><div class="category-count">165 peças</div></div></div>
-    <div class="category-card"><div class="category-bg" style="background:linear-gradient(135deg,#c2a0e8,#7e57b0);"></div><div class="category-overlay"></div><div class="category-label"><div class="category-name">GESTANTE</div><div class="category-count">96 peças</div></div></div>
+    <div class="category-card"><div class="category-bg" style="background:linear-gradient(145deg,#ffc2d4,#e05880);"></div><div class="category-overlay"></div><div class="category-label"><div class="category-name">MENINAS</div><div class="category-count">183 peças</div></div></div>
+    <div class="category-card"><div class="category-bg" style="background:linear-gradient(135deg,#6db3e0,#3276b0);"></div><div class="category-overlay"></div><div class="category-label"><div class="category-name">MENINOS</div><div class="category-count">156 peças</div></div></div>
+    <div class="category-card"><div class="category-bg" style="background:linear-gradient(135deg,#ffd6a5,#e8742a);"></div><div class="category-overlay"></div><div class="category-label"><div class="category-name">BEBÊS RN</div><div class="category-count">98 peças</div></div></div>
     <div class="category-card"><div class="category-bg" style="background:linear-gradient(135deg,#7dcca8,#3f8f6b);"></div><div class="category-overlay"></div><div class="category-label"><div class="category-name">PIJAMAS</div><div class="category-count">72 peças</div></div></div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="reveal">
   <div class="footer-grid">
     <div>
       <div class="footer-logo">ANABELL</div>
-      <p class="footer-desc">Moda feminina e infantil. Do RN ao 18. Envio para todo Brasil.</p>
+      <p class="footer-desc">Moda infantil do RN aos 18 anos. Qualidade, conforto e estilo para os pequenos.</p>
       <div class="newsletter"><input placeholder="Seu e-mail"><button>Assinar</button></div>
     </div>
     <div class="footer-cols">
-      <div><div class="footer-title">Loja</div><ul class="footer-links"><li><a href="#">Feminino</a></li><li><a href="#">Infantil RN–18</a></li><li><a href="#">Gestante</a></li><li><a href="#">Pijamas</a></li></ul></div>
+      <div><div class="footer-title">Loja</div><ul class="footer-links"><li><a href="#">Meninas</a></li><li><a href="#">Meninos</a></li><li><a href="#">Bebês RN</a></li><li><a href="#">Pijamas</a></li></ul></div>
       <div><div class="footer-title">Ajuda</div><ul class="footer-links"><li><a href="#">Guia de Tamanhos</a></li><li><a href="#">Trocas</a></li><li><a href="#">Rastrear Pedido</a></li><li><a href="#">Fale Conosco</a></li></ul></div>
       <div><div class="footer-title">Contato</div><ul class="footer-links"><li><a href="#">(44) 99985-5133</a></li><li><a href="#">@anabellassis</a></li><li><a href="#">Assis Ch., PR</a></li></ul></div>
     </div>
@@ -572,7 +735,6 @@
   <div class="footer-bottom"><span>© 2025 Anabell. Todos os direitos reservados.</span><span>Privacidade · Termos</span></div>
 </footer>
 
-<!-- CART -->
 <div id="cartOverlay" class="cart-overlay" onclick="closeCartOnBg(event)">
   <div class="cart-sidebar">
     <div class="cart-header"><span class="cart-title">CARRINHO (<span id="cartCount">0</span>)</span><div class="cart-close" onclick="toggleCart()">✕</div></div>
@@ -585,36 +747,47 @@
   let cartItems = [];
   function toggleCart() { document.getElementById('cartOverlay').classList.toggle('open'); }
   function closeCartOnBg(e) { if(e.target===document.getElementById('cartOverlay')) toggleCart(); }
-  function addToCart(name,price) {
-    let existing=cartItems.find(i=>i.name===name);
-    if(existing) existing.qty++;
-    else cartItems.push({name,price,qty:1});
+  function addToCart(name, price) {
+    let existing = cartItems.find(i => i.name === name);
+    if (existing) existing.qty++;
+    else cartItems.push({name, price, qty:1});
     renderCart();
-    if(!document.getElementById('cartOverlay').classList.contains('open')) toggleCart();
+    if (!document.getElementById('cartOverlay').classList.contains('open')) toggleCart();
   }
   function removeCartItem(index) { cartItems.splice(index,1); renderCart(); }
   function renderCart() {
-    let container=document.getElementById('cartItemsList');
-    let countSpan=document.getElementById('cartCount');
-    let totalSpan=document.getElementById('cartTotalPrice');
-    let footer=document.getElementById('cartFooter');
-    let total=0,cnt=0;
-    cartItems.forEach(i=>{total+=i.price*i.qty;cnt+=i.qty;});
-    countSpan.innerText=cnt;
-    totalSpan.innerText=`R$ ${total.toFixed(2).replace('.',',')}`;
-    if(cartItems.length===0){container.innerHTML='<div style="text-align:center;padding:40px 0;color:gray;">Seu carrinho está vazio</div>';footer.style.display='none';return;}
-    footer.style.display='block';
-    let html='';
-    cartItems.forEach((item,idx)=>{
-      html+=`<div class="cart-item"><div class="cart-img" style="background:linear-gradient(145deg,#cfe6df,#a3c6b4);"></div>
+    let container = document.getElementById('cartItemsList');
+    let countSpan = document.getElementById('cartCount');
+    let totalSpan = document.getElementById('cartTotalPrice');
+    let footer = document.getElementById('cartFooter');
+    let total = 0, cnt = 0;
+    cartItems.forEach(i => { total += i.price * i.qty; cnt += i.qty; });
+    countSpan.innerText = cnt;
+    totalSpan.innerText = `R$ ${total.toFixed(2).replace('.',',')}`;
+    if (cartItems.length === 0) { container.innerHTML='<div style="text-align:center;padding:40px 0;color:gray;">Seu carrinho está vazio</div>'; footer.style.display='none'; return; }
+    footer.style.display = 'block';
+    let html = '';
+    cartItems.forEach((item, idx) => {
+      html += `<div class="cart-item"><div class="cart-img" style="background:linear-gradient(145deg,#cfe6df,#a3c6b4);"></div>
       <div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div style="font-size:12px;">Qtd: ${item.qty}</div><div class="cart-item-price">R$ ${(item.price*item.qty).toFixed(2).replace('.',',')}</div></div>
       <button class="cart-remove" onclick="removeCartItem(${idx})">✕</button></div>`;
     });
-    container.innerHTML=html;
+    container.innerHTML = html;
   }
   function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-  const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');observer.unobserve(e.target);}});},{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  let featuredCurrent = 0;
+  const featuredSlides = document.querySelectorAll('.featured-slide');
+  function featuredSlide(dir) {
+    featuredSlides[featuredCurrent].style.display = 'none';
+    featuredCurrent = (featuredCurrent + dir + featuredSlides.length) % featuredSlides.length;
+    featuredSlides[featuredCurrent].style.display = 'block';
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+  }, {threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
